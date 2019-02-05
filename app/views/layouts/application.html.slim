@@ -1,0 +1,101 @@
+doctype html
+html.flexbox lang=I18n.locale
+  head
+    title SmartManSys
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="msapplication-config" content="none"
+
+    link rel="stylesheet" media="all" href="https://app.smartmansys.com/assets/application-b6a02c7f193aaa90a49f5f7ec08a803dce67f1a58a829a9ac72e1b0ef38e5ab0.css" data-turbolinks-track="true"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    = csrf_meta_tags
+  body class=controller_name
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="/" SmartManSys
+        ul.nav.navbar-nav.navbar-right.hidden-xs
+          li.dropdown
+            a.profile.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              img.avatar alt="Avatar" src="/assets/avatar-default-60.png"
+              Wesley
+              span.caret
+            ul.dropdown-menu
+              li
+                a href="/members" Gebruikers
+              li
+                a href="/organisation/edit" Organisatie
+              li
+                a href="/news_items" Nieuwsberichten
+              li.divider role="separator"
+              li
+                a rel="nofollow" data-method="delete" href="/sessions" Uitloggen
+
+        ul.nav.navbar-nav.collapse
+          li
+            a href="/dashboards" Dashboard
+          li
+            a href="/manuals" Handboek
+          li
+            a href="/documents" Documenten
+          li
+            a href="/deviations" Afwijkingen
+          li
+            a href="/tasks" Taken
+          li
+            a href="/reference_tables" Normen
+          li
+            a href="/interviews" Audit
+          li
+            a href="/pia_questionnaires" DPIA
+          hr
+            a href="/members" Gebruikers
+          li
+            a href="/organisation/edit" Organisatie
+          li
+            a href="/news_items" Nieuwsberichten
+          hr
+          li
+            a rel="nofollow" data-method="delete" href="/sessions" Uitloggen
+    .wrapper
+      .sidebar-wrapper
+        aside.sidebar.collapse.navbar-collapse id="sidebar"
+          h5.manual-title Bouw &amp; van der Meerendonk
+          nav
+            ul.nav.nav-pills.nav-stacked
+              li
+                a href="/dashboards"
+                  i.fa.fa-fw.fa-chart-line
+                  | Dashboard
+              li
+                a data-nav="/manual_paragraphs" href="/manuals"
+                  i.fa.fa-fw.fa-book
+                  | Handboek
+              li
+                a href="/documents"
+                  i.fa.fa-fw.fa-file-alt
+                  | Documenten
+              li
+                a href="/deviations"
+                  i.fa.fa-fw.fa-flag
+                  | Afwijkingen
+              li
+                a href="/tasks"
+                  i.fa.fa-fw.fa-calendar-check
+                  | Taken
+              li
+                a href="/reference_tables"
+                  i.fa.fa-fw.fa-gavel
+                  | Normen
+              li
+                a href="/interviews"
+                  i.fa.fa-fw.fa-search
+                  | Audit
+              li.active
+                a href="/pia_questionnaires"
+                  i.fa.fa-fw.fa-user-secret
+                  | DPIA
+      .content
+        .container-fluid.content-wrapper
+      		= yield
