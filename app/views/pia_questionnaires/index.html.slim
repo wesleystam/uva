@@ -1,0 +1,45 @@
+.heading
+  h1.heading-title Data Protection Impact Assessments
+  ul.list-links
+    li = link_to '+ Nieuw DPIA', '#newPiaQuestionnaireModel', data: { toggle: :modal }
+
+table.table.table-striped.table-hover
+  thead
+    tr
+      th Nr.
+      th Naam
+      th Voortgang
+      th Acties
+  - @pia_questionnaires.each do |pia_questionnaire|
+    tr data-href=pia_questionnaire_path(pia_questionnaire)
+      td = pia_questionnaire.id
+      td = pia_questionnaire.name
+      td
+        .progress
+          .progress-bar role="progressbar" aria-valuenow=pia_questionnaire.progress aria-valuemin="0" aria-valuemax="100" style="width: #{pia_questionnaire.progress};"
+            = pia_questionnaire.progress
+
+#newPiaQuestionnaireModel.modal.fade tabindex="-1" role="dialog"
+  .modal-dialog
+    .modal-content
+      = form_for PiaQuestionnaire.new, html: { class: 'form-horizontal' } do |f|
+        .modal-header
+          button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+          h4.modal-title Data Protection Impact Asessment
+        .modal-body
+          .form-group
+            = f.label :name, class: 'control-label col-sm-3'
+            .col-sm-9
+              = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :participants, class: 'control-label col-sm-3'
+            .col-sm-9
+              = f.text_field :participants, class: 'form-control'
+          .form-group
+            = f.label :auitor, class: 'control-label col-sm-3'
+            .col-sm-9
+              = f.text_field :auditor, class: 'form-control'
+        .modal-footer
+          = f.submit class: 'btn btn-primary'
+          button.btn.btn-default.pull-left type="button" data-dismiss="modal" Annuleren
