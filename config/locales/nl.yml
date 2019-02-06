@@ -1,0 +1,9 @@
+nl:
+  activerecord:
+    attributes:
+      pia_questionnaire:
+        auditor: Auditor
+        name: Naam
+        participants: Deelnemers
+    models:
+      pia_questionnaire: Data Protection Impact Assessment

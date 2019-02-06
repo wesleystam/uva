@@ -16,8 +16,18 @@ table.table.table-striped.table-hover
       td = pia_questionnaire.name
       td
         .progress
-          .progress-bar role="progressbar" aria-valuenow=pia_questionnaire.progress aria-valuemin="0" aria-valuemax="100" style="width: #{pia_questionnaire.progress};"
-            = pia_questionnaire.progress
+          .progress-bar role="progressbar" aria-valuenow=pia_questionnaire.progress aria-valuemin="0" aria-valuemax="100" style="width: #{pia_questionnaire.progress}%;"
+            = "#{pia_questionnaire.progress}%"
+      td
+        - if pia_questionnaire.progress >= 100
+          => link_to edit_pia_questionnaire_path(pia_questionnaire), title: 'Wijzig assessment',  data: { toggle: :tooltip } do
+            i.fa.fa-pencil
+        - else
+          => link_to pia_questionnaire_path(pia_questionnaire), title: 'Naar de bevindingen',  data: { toggle: :tooltip } do
+            i.far.fa-bullhorn
+        = link_to pia_questionnaire_path(pia_questionnaire), method: :delete, title: 'Verwijder asessment', data: { toggle: :tooltip } do
+          i.fa.fa-trash
+
 
 #newPiaQuestionnaireModel.modal.fade tabindex="-1" role="dialog"
   .modal-dialog

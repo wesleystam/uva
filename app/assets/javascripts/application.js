@@ -13,3 +13,12 @@
 //= require jquery3
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('[data-href]').on('click', function(e) {
+    e.preventDefault();
+    Turbolinks.visit(e.currentTarget.dataset.href);
+  });
+});
