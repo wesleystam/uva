@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_133350) do
+ActiveRecord::Schema.define(version: 2019_02_07_133906) do
 
   create_table "pia_questionnaires", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,24 @@ ActiveRecord::Schema.define(version: 2019_02_05_133350) do
     t.integer "progress", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pia_questions", force: :cascade do |t|
+    t.text "question"
+    t.text "description"
+    t.text "yes_explanation"
+    t.text "no_explanation"
+    t.text "yes_measure"
+    t.text "no_measure"
+    t.integer "position", default: 0
+    t.boolean "yes_to_end", default: false
+    t.boolean "no_to_end", default: false
+    t.integer "yes_next_question_id"
+    t.integer "no_next_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["no_next_question_id"], name: "index_pia_questions_on_no_next_question_id"
+    t.index ["yes_next_question_id"], name: "index_pia_questions_on_yes_next_question_id"
   end
 
 end
