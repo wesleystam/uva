@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-7">
+    <div class="card">
+      <%= form_for [@pia_questionnaire, @pia_answer] do |f| %>
+        <p><%= @pia_question.question %></p>
+        <p class="form-control"><%= @pia_question.description %></p>
+        <%= validation_errors(f, :answer) %>
+        <%= f.hidden_field :answer %>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :answer, 'yes' %> Ja
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :answer, 'no' %> Nee
+          </label>
+        </div>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="card">
+      <ol>
+        <% @pia_answers.each do |pia_answer| %>
+          <li><%= link_to pia_answer.pia_question.question, edit_pia_questionnaire_pia_answer_path(@pia_questionnaire, pia_answer) %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>
