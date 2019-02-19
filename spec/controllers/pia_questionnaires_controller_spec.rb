@@ -36,4 +36,20 @@ RSpec.describe PiaQuestionnairesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+    let(:pia_questionnaire) { create(:pia_questionnaire) }
+
+    context 'when the pia_questionnaire has no answered answers' do
+      it 'redirects to first pia_answer' do
+        pia_answer = create(:pia_answer, pia_questionnaire: pia_questionnaire)
+        get :show, params: { id: pia_questionnaire }
+        expect(response).to redirect_to(edit_pia_questionnaire_pia_answer_path(pia_questionnaire, pia_answer))
+      end
+    end
+
+    context 'when the pia_questionnaire has answered answers' do
+      it 'redirects to next pia_answer'
+    end
+  end
 end
