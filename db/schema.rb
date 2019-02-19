@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_133906) do
+ActiveRecord::Schema.define(version: 2019_02_19_085005) do
+
+  create_table "pia_answers", force: :cascade do |t|
+    t.string "answer"
+    t.integer "pia_questionnaire_id"
+    t.integer "pia_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pia_question_id"], name: "index_pia_answers_on_pia_question_id"
+    t.index ["pia_questionnaire_id"], name: "index_pia_answers_on_pia_questionnaire_id"
+  end
 
   create_table "pia_questionnaires", force: :cascade do |t|
     t.string "name"
